@@ -17,8 +17,8 @@ namespace Clickideias.TicTacToe
 
         private void Sort()
         {
-            int turn = Random.Range(1, 100);
-            int aux = Random.Range(1, 10);
+            int turn = Random.Range(1, 9);
+            int aux = Random.Range(1, 9);
             Debug.Log(turn % aux);
             if (turn % aux == 0)
             {

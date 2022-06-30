@@ -7,17 +7,21 @@ namespace Clickideias.TicTacToe
 {
     public class Table : MonoBehaviour
     {
-        //Gameobject "pai" que segura todos os elementos do array
+        //Parent gameobject that holds all buttons childrens
         [SerializeField] private GameObject slotsParent;
         private Button[] slots = new Button[9];
 
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
         private void Start()
         {
             FillArray();
         }
 
         /// <summary>
-        /// Preenche o array com o componente "Button" da unity 
+        /// Fill arrays with "Button" component of unity 
         /// </summary>
         private void FillArray()
         {
