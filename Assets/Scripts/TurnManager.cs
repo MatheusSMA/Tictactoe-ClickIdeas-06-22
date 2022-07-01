@@ -4,12 +4,15 @@ namespace Clickideias.TicTacToe
 {
     public class TurnManager : MonoBehaviour
     {
-        //Computer simbol: X
-        //Player simbol: O
+        public static TurnManager Instance;
 
-        //Sprite for X and O for plays
+        //Computer simbol: O
+        //Player simbol: X        
         [SerializeField] private Sprite _xSprite;
         [SerializeField] private Sprite _oSprite;
+        public Sprite XSprite { get => _xSprite; }
+        public Sprite OSprite { get => _oSprite; }
+
 
         //Only for title purpose
         [SerializeField] private TextMeshProUGUI turnText;
@@ -17,6 +20,16 @@ namespace Clickideias.TicTacToe
         private bool computerStartTurn;
         public bool ComputerStartTurn { get => computerStartTurn; }
 
+        private int currentPlayer;
+
+
+        /// <summary>
+        /// Awake is called when the script instance is being loaded.
+        /// </summary>
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         /// <summary>
         /// Start is called on the frame when a script is enabled just before

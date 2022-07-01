@@ -11,9 +11,19 @@ namespace Clickideias.TicTacToe
         [SerializeField] private GameObject _slotsParent;
 
         //Array of slots
-        private Button[] slots = new Button[9];
+        private Slot[] _board = new Slot[9];
 
-
+        public int[,] winCombos = new int[8, 3]
+        {
+            {0,1,2},
+            {3,4,5},
+            {6,7,8},
+            {0,3,6},
+            {1,4,7},
+            {2,5,8},
+            {0,4,8},
+            {6,4,2},
+        };
 
         /// <summary>
         /// Start is called on the frame when a script is enabled just before
@@ -29,14 +39,25 @@ namespace Clickideias.TicTacToe
         /// </summary>
         private void FillArray()
         {
-            for (int i = 0; i < slots.Length; i++)
+            for (int i = 0; i < _board.Length; i++)
             {
-                slots[i] = _slotsParent.transform.GetChild(i).GetComponent<Button>();
+                _board[i] = _slotsParent.transform.GetChild(i).GetComponent<Slot>();
             }
         }
 
-        public void SetValue(Button btn)
+        public void SetValue(Slot slot)
         {
+            slot.SetPlayerPlay();
+
+            for (int i = 0; i < 8; i++)
+            {
+                //*if player
+                if (_board[winCombos[i, 0]].MyValue == 1 && _board[winCombos[i, 1]].MyValue == 1 && _board[winCombos[i, 2]].MyValue == 1)
+                {
+                    Debug.Log("Player Wins");
+                }
+                //*else computer
+            }
 
         }
     }
