@@ -8,8 +8,12 @@ namespace Clickideias.TicTacToe
     public class Table : MonoBehaviour
     {
         //Parent gameobject that holds all buttons childrens
-        [SerializeField] private GameObject slotsParent;
+        [SerializeField] private GameObject _slotsParent;
+
+        //Array of slots
         private Button[] slots = new Button[9];
+
+
 
         /// <summary>
         /// Start is called on the frame when a script is enabled just before
@@ -27,7 +31,7 @@ namespace Clickideias.TicTacToe
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                slots[i] = slotsParent.transform.GetChild(i).GetComponent<Button>();
+                slots[i] = _slotsParent.transform.GetChild(i).GetComponent<Button>();
             }
         }
 
