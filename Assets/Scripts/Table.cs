@@ -11,7 +11,7 @@ namespace Clickideias.TicTacToe
         [SerializeField] private GameObject _slotsParent;
 
         //Array of slots
-        private Slot[] _board = new Slot[9];
+        public Slot[] _board = new Slot[9];
 
         public int[,] winCombos = new int[8, 3]
         {
