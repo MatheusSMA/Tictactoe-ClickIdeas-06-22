@@ -7,6 +7,10 @@ namespace Clickideias.TicTacToe
 {
     public class Table : MonoBehaviour
     {
+        [Header("Computer AI")]
+        [SerializeField] private ComputerAI computerAI;
+
+        [Header("Board vars")]
         //Parent gameobject that holds all buttons childrens
         [SerializeField] private GameObject _slotsParent;
 
@@ -24,6 +28,9 @@ namespace Clickideias.TicTacToe
             {0,4,8},
             {6,4,2},
         };
+
+
+
 
         /// <summary>
         /// Start is called on the frame when a script is enabled just before
@@ -56,7 +63,11 @@ namespace Clickideias.TicTacToe
                 {
                     Debug.Log("Player Wins");
                 }
-                //*else computer
+                else if (_board[winCombos[i, 0]].MyValue == 0 && _board[winCombos[i, 1]].MyValue == 0 && _board[winCombos[i, 2]].MyValue == 0)
+                {
+                    Debug.Log("Computer Wins");
+                }
+
             }
 
         }

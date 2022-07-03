@@ -6,6 +6,7 @@ namespace Clickideias.TicTacToe
     {
         public static TurnManager Instance;
 
+        [Header("'X' and 'O' sprites")]
         //Computer simbol: O
         //Player simbol: X        
         [SerializeField] private Sprite _xSprite;
@@ -13,14 +14,12 @@ namespace Clickideias.TicTacToe
         public Sprite XSprite { get => _xSprite; }
         public Sprite OSprite { get => _oSprite; }
 
-
+        [Header("Title text")]
         //Only for title purpose
         [SerializeField] private TextMeshProUGUI turnText;
 
-        private bool computerStartTurn;
-        public bool ComputerStartTurn { get => computerStartTurn; }
-
         private int currentPlayer;
+        public int CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
 
 
         /// <summary>
@@ -55,13 +54,13 @@ namespace Clickideias.TicTacToe
         {
             Debug.Log("Vez da do player");
             turnText.text = "Player turn!";
-            computerStartTurn = false;
+            currentPlayer = 1;
         }
         private void SetComputerTurn()
         {
             Debug.Log("Vez da máquina");
             turnText.text = "Computer turn!";
-            computerStartTurn = true;
+            currentPlayer = 2;
         }
 
     }
