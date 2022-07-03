@@ -589,10 +589,10 @@ RectTransform:
   m_Father: {fileID: 155028386}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17.475, y: 446.106}
-  m_SizeDelta: {x: 593.184, y: 76.212}
+  m_AnchorMin: {x: 0.351, y: 0.87870175}
+  m_AnchorMax: {x: 0.6633542, y: 0.9517329}
+  m_AnchoredPosition: {x: 0, y: -2.3940125}
+  m_SizeDelta: {x: -5.4085007, y: -2.788}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &386265770
 MonoBehaviour:
@@ -1482,6 +1482,49 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3167888831553326928, guid: 7fceea86f8634f644aa3f90988468b9b, type: 3}
   m_PrefabInstance: {fileID: 816959930}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1084854499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1084854501}
+  - component: {fileID: 1084854500}
+  m_Layer: 0
+  m_Name: Computer AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1084854500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084854499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cee86c2d3e320449fb9e4872675c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1084854501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084854499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 408.5472, y: 123.08936, z: -14.045323}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1175977739 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1864926872971814638, guid: 7fceea86f8634f644aa3f90988468b9b, type: 3}
@@ -1703,7 +1746,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0a10ae7dcdab74daeddf4ccf204a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  computerAI: {fileID: 1084854500}
   _slotsParent: {fileID: 1937605964}
+  _board:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1588163400
 Transform:
   m_ObjectHideFlags: 0
@@ -1911,10 +1965,10 @@ RectTransform:
   m_Father: {fileID: 155028386}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.256, y: 0.13143949}
-  m_AnchorMax: {x: 0.73312503, y: 0.8575606}
-  m_AnchoredPosition: {x: 22, y: -42}
-  m_SizeDelta: {x: -21.002014, y: 7.973999}
+  m_AnchorMin: {x: 0.27056253, y: 0.087000005}
+  m_AnchorMax: {x: 0.7413959, y: 0.82051307}
+  m_AnchoredPosition: {x: 0, y: 2}
+  m_SizeDelta: {x: -9.002014, y: -0.026000977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1937605966
 MonoBehaviour:

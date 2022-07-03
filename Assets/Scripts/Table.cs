@@ -40,9 +40,9 @@ namespace Clickideias.TicTacToe
         }
         void Update()
         {
-            if (TurnManager.Instance.CurrentPlayer == 2)
+            if (TurnManager.Instance.CurrentPlayer == 0)
             {
-                computerAI.AIMove(_board, 2);
+                computerAI.AIMove(_board, 2, this);
                 CheckVictory();
                 TurnManager.Instance.CurrentPlayer = 1;
             }
@@ -66,25 +66,37 @@ namespace Clickideias.TicTacToe
 
         }
 
-        public void CheckVictory()
+        public int CheckVictory()
         {
+            int count = 0;
             for (int i = 0; i < 8; i++)
             {
-                //*if player wins
+                //*if player wins X
                 if (_board[winCombos[i, 0]].MyValue == 1 && _board[winCombos[i, 1]].MyValue == 1 && _board[winCombos[i, 2]].MyValue == 1)
                 {
                     Debug.Log("Player Wins");
+                    return 1;
                 }
+                //*if computer wins O
                 else if (_board[winCombos[i, 0]].MyValue == 2 && _board[winCombos[i, 1]].MyValue == 2 && _board[winCombos[i, 2]].MyValue == 2)
                 {
                     Debug.Log("Computer Wins");
+                    return -1;
                 }
-                else
+                else if (_board[i].MyValue != 0)
                 {
-                    Debug.Log("Draw!");
-                }
+                    count++;
 
+                    if (count >= 8)
+                    {
+                        Debug.Log("Draw!");
+                        return 0;
+                    }
+
+                }
             }
+
+            return 7;
         }
     }
 }

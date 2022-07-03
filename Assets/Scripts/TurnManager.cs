@@ -7,8 +7,6 @@ namespace Clickideias.TicTacToe
         public static TurnManager Instance;
 
         [Header("'X' and 'O' sprites")]
-        //Computer simbol: O
-        //Player simbol: X        
         [SerializeField] private Sprite _xSprite;
         [SerializeField] private Sprite _oSprite;
         public Sprite XSprite { get => _xSprite; }
@@ -20,6 +18,9 @@ namespace Clickideias.TicTacToe
 
         private int currentPlayer;
         public int CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
+
+        //Currentplayer = 0 -> Computer
+        //Currentplayer = 1 -> player
 
 
         /// <summary>
@@ -37,8 +38,6 @@ namespace Clickideias.TicTacToe
         private void Start()
         {
             int chance = Random.Range(1, 9);
-            // System.Random random = new System.Random();
-            // int chanceTwo = random.Next(1, 10);
             if (chance % 2 == 0)
             {
                 SetPlayerTurn();
@@ -50,17 +49,17 @@ namespace Clickideias.TicTacToe
             }
         }
 
+        public void SetComputerTurn()
+        {
+            Debug.Log("Vez da máquina");
+            turnText.text = "Computer turn!";
+            currentPlayer = 0;
+        }
         public void SetPlayerTurn()
         {
             Debug.Log("Vez da do player");
             turnText.text = "Player turn!";
             currentPlayer = 1;
-        }
-        public void SetComputerTurn()
-        {
-            Debug.Log("Vez da máquina");
-            turnText.text = "Computer turn!";
-            currentPlayer = 2;
         }
 
     }

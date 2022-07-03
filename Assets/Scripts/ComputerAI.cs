@@ -17,28 +17,28 @@ namespace Clickideias.TicTacToe
         }
 
 
-        public void AIMove(Slot[] board, int currentPlayer)
+        public Slot AIMove(Slot[] board, int currentPlayer, Table table)
         {
-            List<Slot> possibilitys = new List<Slot>();
-            possibilitys = GetPositions(board);
+            List<Slot> possibilitys = GetPositions(board);
+
             var bestValue = 0;
             var bestMov = 0;
             for (int i = 0; i < possibilitys.Count; i++)
             {
-                possibilitys[i].SetComputerPlay();
-                var value = 0;
-                possibilitys[i].MyValue = 0;
+                board[i].MyValue = 1;
+                var value = Minimax(board, currentPlayer, table);
+                board[i].MyValue = 0;
 
                 if (bestValue == 0)
                 {
-                    value = bestValue;
-                    i = bestMov;
+                    bestValue = value;
+                    bestMov = i;
                 }
-                else if (currentPlayer == 2)
+                else if (currentPlayer == 0)
                 {
                     if (value > bestValue)
                     {
-                        value = bestValue;
+                        bestValue = value;
                         bestMov = i;
                     }
                 }
@@ -46,12 +46,13 @@ namespace Clickideias.TicTacToe
                 {
                     if (value < bestValue)
                     {
-                        value = bestValue;
+                        bestValue = value;
                         bestMov = i;
                     }
                 }
-
             }
+
+            return board[bestMov];
         }
 
         public List<Slot> GetPositions(Slot[] board)
@@ -67,10 +68,51 @@ namespace Clickideias.TicTacToe
             return emptySpaces;
         }
 
-        public void Minimax(Slot[] board, int currentPlayer, Table table)
+
+
+        public int Minimax(Slot[] board, int currentPlayer, Table table)
         {
-            table.CheckVictory();
+            // ref
+            // jogador 0 = computador 
+            // jogador 1 = pessoa
+
+            int winner = table.CheckVictory();
+            if (winner != 7)
+            {
+                Debug.Log("winner : " + winner);
+                return winner;
+            }
             currentPlayer = (currentPlayer + 1) % 2;
+            List<Slot> possibilitysNew = GetPositions(board);
+
+            var bestValue = 0;
+            for (int i = 0; i < possibilitysNew.Count; i++)
+            {
+                board[i].MyValue = 1;
+                var value = Minimax(board, currentPlayer, table);
+                board[i].MyValue = 0;
+
+                if (bestValue == 0)
+                {
+                    bestValue = value;
+                }
+                else if (currentPlayer == 0)
+                {
+                    if (value > bestValue)
+                    {
+                        bestValue = value;
+                    }
+                }
+                else if (currentPlayer == 1)
+                {
+                    if (value < bestValue)
+                    {
+                        bestValue = value;
+                    }
+                }
+            }
+
+            return bestValue;
         }
     }
 }
