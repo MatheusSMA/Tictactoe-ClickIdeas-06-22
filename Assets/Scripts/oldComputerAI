@@ -32,7 +32,49 @@ namespace Clickideias.TicTacToe
             }
             board[Convert.ToInt32(bestMove)].SetComputerPlay();
             TurnManager.Instance.SetPlayerTurn();
+
+            //     board[i].MyValue = currentPlayer;
+            //     var value = Minimax(board, currentPlayer, table);
+            //     board[i].MyValue = 0;
+
+            //     if (bestValue == 0)
+            //     {
+            //         bestValue = value;
+            //         bestMov = i;
+            //     }
+            //     else if (currentPlayer == 0)
+            //     {
+            //         if (value > bestValue)
+            //         {
+            //             bestValue = value;
+            //             bestMov = i;
+            //         }
+            //     }
+            //     else if (currentPlayer == 1)
+            //     {
+            //         if (value < bestValue)
+            //         {
+            //             bestValue = value;
+            //             bestMov = i;
+            //         }
+            //     }
+            // }
+
+            // return board[bestMov];
         }
+
+        // public List<Slot> GetPositions(Slot[] board)
+        // {
+        //     var emptySpaces = new List<Slot>();
+        //     foreach (Slot slot in board)
+        //     {
+        //         if (slot.MyValue == 0)
+        //         {
+        //             emptySpaces.Add(slot);
+        //         }
+        //     }
+        //     return emptySpaces;
+        // }
 
         public static Dictionary<string, int> score = new Dictionary<string, int>
         {
@@ -87,6 +129,41 @@ namespace Clickideias.TicTacToe
                 }
                 return bestValue;
             }
+            //   board[bestMov] =  board[bestMov].MyValue = 2;
+
+
+
+            // currentPlayer = (currentPlayer + 1) % 2;
+            // var possibilitysNew = GetPositions(board);
+            // var bestValue = 0;
+
+            // for (int i = 0; i < 8; i++)
+            // {
+            //     board[i].MyValue = currentPlayer;
+            //     var value = Minimax(board, currentPlayer, table);
+            //     board[i].MyValue = 0;
+
+            //     if (bestValue == 0)
+            //     {
+            //         bestValue = value;
+            //     }
+            //     else if (currentPlayer == 0)
+            //     {
+            //         if (value > bestValue)
+            //         {
+            //             bestValue = value;
+            //         }
+            //     }
+            //     else if (currentPlayer == 1)
+            //     {
+            //         if (value < bestValue)
+            //         {
+            //             bestValue = value;
+            //         }
+            //     }
+            // }
+
+            // return bestValue;
         }
     }
 }
