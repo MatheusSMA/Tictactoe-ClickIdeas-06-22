@@ -25,8 +25,9 @@ namespace Clickideias.TicTacToe
 
             MyValue = 1;
             //Set next play for computer
-            TurnManager.Instance.CurrentPlayer = 2;
+            TurnManager.Instance.SetComputerTurn();
         }
+
         public void SetComputerPlay()
         {
             _currentSprite = TurnManager.Instance.OSprite;
@@ -35,7 +36,17 @@ namespace Clickideias.TicTacToe
 
             MyValue = 2;
             //Set next play for player
-            TurnManager.Instance.CurrentPlayer = 1;
+            TurnManager.Instance.SetPlayerTurn();
+        }
+        public void SetNullPlay()
+        {
+            _currentSprite = null;
+            transform.GetChild(0).GetComponent<Image>().sprite = _currentSprite;
+            this.GetComponent<Button>().interactable = true;
+
+            MyValue = 0;
+            // //Set next play for player
+            // TurnManager.Instance.SetPlayerTurn();
         }
     }
 }

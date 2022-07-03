@@ -30,8 +30,6 @@ namespace Clickideias.TicTacToe
         };
 
 
-
-
         /// <summary>
         /// Start is called on the frame when a script is enabled just before
         /// any of the Update methods is called the first time.
@@ -39,6 +37,15 @@ namespace Clickideias.TicTacToe
         private void Start()
         {
             FillArray();
+        }
+        void Update()
+        {
+            if (TurnManager.Instance.CurrentPlayer == 2)
+            {
+                computerAI.AIMove(_board, 2);
+                CheckVictory();
+                TurnManager.Instance.CurrentPlayer = 1;
+            }
         }
 
         /// <summary>
@@ -55,21 +62,29 @@ namespace Clickideias.TicTacToe
         public void SetValue(Slot slot)
         {
             slot.SetPlayerPlay();
+            CheckVictory();
 
+        }
+
+        public void CheckVictory()
+        {
             for (int i = 0; i < 8; i++)
             {
-                //*if player
+                //*if player wins
                 if (_board[winCombos[i, 0]].MyValue == 1 && _board[winCombos[i, 1]].MyValue == 1 && _board[winCombos[i, 2]].MyValue == 1)
                 {
                     Debug.Log("Player Wins");
                 }
-                else if (_board[winCombos[i, 0]].MyValue == 0 && _board[winCombos[i, 1]].MyValue == 0 && _board[winCombos[i, 2]].MyValue == 0)
+                else if (_board[winCombos[i, 0]].MyValue == 2 && _board[winCombos[i, 1]].MyValue == 2 && _board[winCombos[i, 2]].MyValue == 2)
                 {
                     Debug.Log("Computer Wins");
                 }
+                else
+                {
+                    Debug.Log("Draw!");
+                }
 
             }
-
         }
     }
 }

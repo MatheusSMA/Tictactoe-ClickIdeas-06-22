@@ -50,13 +50,13 @@ namespace Clickideias.TicTacToe
             }
         }
 
-        private void SetPlayerTurn()
+        public void SetPlayerTurn()
         {
             Debug.Log("Vez da do player");
             turnText.text = "Player turn!";
             currentPlayer = 1;
         }
-        private void SetComputerTurn()
+        public void SetComputerTurn()
         {
             Debug.Log("Vez da máquina");
             turnText.text = "Computer turn!";
