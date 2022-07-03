@@ -40,12 +40,11 @@ namespace Clickideias.TicTacToe
         }
         void Update()
         {
-            if (TurnManager.Instance.CurrentPlayer == 0)
-            {
-                computerAI.AIMove(_board, 2, this);
-                CheckVictory();
-                TurnManager.Instance.CurrentPlayer = 1;
-            }
+            // if (TurnManager.Instance.CurrentPlayer == 0)
+            // {
+            //     computerAI.AIMove(_board, 0, this);
+
+            // }
         }
 
         /// <summary>
@@ -62,11 +61,14 @@ namespace Clickideias.TicTacToe
         public void SetValue(Slot slot)
         {
             slot.SetPlayerPlay();
-            CheckVictory();
+            if (TurnManager.Instance.CurrentPlayer == 0)
+            {
+                computerAI.AIMove(_board, this);
+            }
 
         }
 
-        public int CheckVictory()
+        public string CheckVictory()
         {
             int count = 0;
             for (int i = 0; i < 8; i++)
@@ -74,14 +76,12 @@ namespace Clickideias.TicTacToe
                 //*if player wins X
                 if (_board[winCombos[i, 0]].MyValue == 1 && _board[winCombos[i, 1]].MyValue == 1 && _board[winCombos[i, 2]].MyValue == 1)
                 {
-                    Debug.Log("Player Wins");
-                    return 1;
+                    return "X";
                 }
                 //*if computer wins O
                 else if (_board[winCombos[i, 0]].MyValue == 2 && _board[winCombos[i, 1]].MyValue == 2 && _board[winCombos[i, 2]].MyValue == 2)
                 {
-                    Debug.Log("Computer Wins");
-                    return -1;
+                    return "O";
                 }
                 else if (_board[i].MyValue != 0)
                 {
@@ -89,14 +89,13 @@ namespace Clickideias.TicTacToe
 
                     if (count >= 8)
                     {
-                        Debug.Log("Draw!");
-                        return 0;
+                        return "DRAW";
                     }
 
                 }
             }
 
-            return 7;
+            return null;
         }
     }
 }

@@ -45,19 +45,18 @@ namespace Clickideias.TicTacToe
             }
             else
             {
-                SetComputerTurn();
+                SetPlayerTurn();
+                //SetComputerTurn();
             }
         }
 
         public void SetComputerTurn()
         {
-            Debug.Log("Vez da máquina");
             turnText.text = "Computer turn!";
             currentPlayer = 0;
         }
         public void SetPlayerTurn()
         {
-            Debug.Log("Vez da do player");
             turnText.text = "Player turn!";
             currentPlayer = 1;
         }
