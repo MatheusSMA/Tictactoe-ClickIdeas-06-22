@@ -25,7 +25,7 @@ namespace Clickideias.TicTacToe
 
             MyValue = 1;
             //Set next play for computer
-            TurnManager.Instance.SetComputerTurn();
+            //TurnManager.Instance.SetComputerTurn();
         }
 
         public void SetComputerPlay()

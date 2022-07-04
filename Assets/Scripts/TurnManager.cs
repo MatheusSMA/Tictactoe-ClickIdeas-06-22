@@ -6,6 +6,8 @@ namespace Clickideias.TicTacToe
     {
         public static TurnManager Instance;
 
+        public ComputerAI computerAI;
+
         [Header("'X' and 'O' sprites")]
         [SerializeField] private Sprite _xSprite;
         [SerializeField] private Sprite _oSprite;
@@ -57,6 +59,7 @@ namespace Clickideias.TicTacToe
         }
         public void SetPlayerTurn()
         {
+
             turnText.text = "Player turn!";
             currentPlayer = 1;
         }

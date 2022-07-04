@@ -7,43 +7,48 @@ namespace Clickideias.TicTacToe
 {
     public class ComputerAI : MonoBehaviour
     {
+        public Table table;
 
-        public void AIMove(Slot[] board, Table table)
+
+        public void AIMove()
         {
-            // var possibilitys = GetPositions(board);
             var bestScore = int.MinValue;
-            object bestMove = null;
+            var bestMove = 0;
+            var bestMoveTwo = 0;
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 3; i++)
             {
-                if (board[i].MyValue == 0)
+                for (int j = 0; j < 3; j++)
                 {
-                    board[i].MyValue = 2;
-                    var score = Minimax(board, 0, table, false);
-                    board[i].MyValue = 0;
-                    if (score > bestScore)
+                    if (table._board[i, j].MyValue == 0)
                     {
-                        bestScore = score;
-                        bestMove = i;
-                        Debug.Log(bestMove);
+                        table._board[i, j].MyValue = 2;
+                        var score = Minimax(table._board, 0, false);
+                        table._board[i, j].MyValue = 0;
+                        if (score > bestScore)
+                        {
+                            bestScore = score;
+                            bestMove = i;
+                            bestMoveTwo = j;
+                        }
                     }
                 }
 
             }
-            board[Convert.ToInt32(bestMove)].SetComputerPlay();
+            table._board[bestMove, bestMoveTwo].SetComputerPlay();
             TurnManager.Instance.SetPlayerTurn();
         }
 
         public static Dictionary<string, int> score = new Dictionary<string, int>
         {
-            {  "X", 10},
-            {"O",-10},
+            {  "X", -10},
+            {"O", 10},
             {"DRAW", 0}
         };
 
 
 
-        public int Minimax(Slot[] board, int currentPlayer, Table table, bool isMax)
+        public int Minimax(Slot[,] board, int depth, bool isMax)
         {
             // ref
             // jogador 0 = computador 
@@ -58,31 +63,42 @@ namespace Clickideias.TicTacToe
             if (isMax)
             {
                 var bestValue = int.MinValue;
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (board[i].MyValue == 0)
+                    for (int j = 0; j < 3; j++)
                     {
-                        board[i].MyValue = 2;
-                        var score = Minimax(board, currentPlayer + 1, table, false);
-                        board[i].MyValue = 0;
-                        bestValue = Mathf.Max(score, bestValue);
-                    }
+                        if (board[i, j].MyValue == 0)
+                        {
+                            board[i, j].MyValue = 2;
+                            var score = Minimax(board, depth + 1, false);
+                            board[i, j].MyValue = 0;
+                            if (score > bestValue)
+                            {
+                                bestValue = score;
+                            }
+                        }
 
+                    }
                 }
-                Debug.Log(bestValue);
                 return bestValue;
             }
             else
             {
                 var bestValue = int.MaxValue;
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (board[i].MyValue == 0)
+                    for (int j = 0; j < 3; j++)
                     {
-                        board[i].MyValue = 1;
-                        var score = Minimax(board, currentPlayer + 1, table, true);
-                        board[i].MyValue = 0;
-                        bestValue = Mathf.Min(score, bestValue);
+                        if (board[i, j].MyValue == 0)
+                        {
+                            board[i, j].MyValue = 1;
+                            var score = Minimax(board, depth + 1, true);
+                            board[i, j].MyValue = 0;
+                            if (score < bestValue)
+                            {
+                                bestValue = score;
+                            }
+                        }
                     }
                 }
                 return bestValue;
