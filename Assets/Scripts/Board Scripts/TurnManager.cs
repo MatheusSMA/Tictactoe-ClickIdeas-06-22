@@ -1,12 +1,15 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System.Collections;
+
 namespace Clickideias.TicTacToe
 {
     public class TurnManager : MonoBehaviour
     {
         public static TurnManager Instance;
 
-        public ComputerAI computerAI;
+        [SerializeField] private ComputerAI _computerAI;
 
         [Header("'X' and 'O' sprites")]
         [SerializeField] private Sprite _xSprite;
@@ -17,6 +20,7 @@ namespace Clickideias.TicTacToe
         [Header("Title text")]
         //Only for title purpose
         [SerializeField] private TextMeshProUGUI turnText;
+        [SerializeField] private TextMeshProUGUI winnerText;
 
         private int currentPlayer;
         public int CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
@@ -30,6 +34,7 @@ namespace Clickideias.TicTacToe
         /// </summary>
         private void Awake()
         {
+            //For singleton
             Instance = this;
         }
 
@@ -47,9 +52,15 @@ namespace Clickideias.TicTacToe
             }
             else
             {
-                SetPlayerTurn();
-                //SetComputerTurn();
+                SetComputerTurn();
+                StartCoroutine(WaitForComputerPlay());
             }
+        }
+
+        private IEnumerator WaitForComputerPlay()
+        {
+            yield return new WaitForSeconds(1);
+            _computerAI.AIMove();
         }
 
         public void SetComputerTurn()
@@ -59,9 +70,31 @@ namespace Clickideias.TicTacToe
         }
         public void SetPlayerTurn()
         {
-
             turnText.text = "Player turn!";
             currentPlayer = 1;
+        }
+
+        /// <summary>
+        /// Shows winner text and desactive all buttons
+        /// </summary>
+        /// <param name="table"></param>
+        public void SetEndGame(Table table)
+        {
+            winnerText.gameObject.SetActive(true);
+            if (table.BoardRules() != "DRAW")
+            {
+                winnerText.text = $"{table.BoardRules()} wins!";
+            }
+            else
+            {
+                winnerText.text = "Tie!";
+            }
+
+
+            for (int i = 0; i < 9; i++)
+            {
+                table.SlotsParent.transform.GetChild(i).GetComponent<Button>().interactable = false;
+            }
         }
 
     }

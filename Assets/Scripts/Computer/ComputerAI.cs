@@ -7,12 +7,14 @@ namespace Clickideias.TicTacToe
 {
     public class ComputerAI : MonoBehaviour
     {
-        public Table table;
+        [SerializeField] private Table table;
 
-
+        /// <summary>
+        /// Do the best AI movement on table
+        /// </summary>        
         public void AIMove()
         {
-            var bestScore = int.MinValue;
+            var bestValue = int.MinValue;
             var bestMove = 0;
             var bestMoveTwo = 0;
 
@@ -20,14 +22,14 @@ namespace Clickideias.TicTacToe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (table._board[i, j].MyValue == 0)
+                    if (table.Board[i, j].MyValue == 0)
                     {
-                        table._board[i, j].MyValue = 2;
-                        var score = Minimax(table._board, 0, false);
-                        table._board[i, j].MyValue = 0;
-                        if (score > bestScore)
+                        table.Board[i, j].MyValue = 2;
+                        var score = Minimax(table.Board, 0, false);
+                        table.Board[i, j].MyValue = 0;
+                        if (score > bestValue)
                         {
-                            bestScore = score;
+                            bestValue = score;
                             bestMove = i;
                             bestMoveTwo = j;
                         }
@@ -35,11 +37,14 @@ namespace Clickideias.TicTacToe
                 }
 
             }
-            table._board[bestMove, bestMoveTwo].SetComputerPlay();
+            table.Board[bestMove, bestMoveTwo].ComputerPlay();
             TurnManager.Instance.SetPlayerTurn();
         }
 
-        public static Dictionary<string, int> score = new Dictionary<string, int>
+        /// <summary>
+        /// To recive token (X or O) and give the points for minimax
+        /// </summary>
+        private static Dictionary<string, int> score = new Dictionary<string, int>
         {
             {  "X", -10},
             {"O", 10},
@@ -47,20 +52,19 @@ namespace Clickideias.TicTacToe
         };
 
 
-
-        public int Minimax(Slot[,] board, int depth, bool isMax)
+        public int Minimax(Slot[,] board, int depth, bool isComputer)
         {
-            // ref
-            // jogador 0 = computador 
-            // jogador 1 = pessoa
+            // references
+            // player 0 = computer 
+            // player 1 = human
 
-            string winner = table.CheckVictory();
+            string winner = table.BoardRules();
             if (winner != null)
             {
                 return score[winner];
             }
 
-            if (isMax)
+            if (isComputer)
             {
                 var bestValue = int.MinValue;
                 for (int i = 0; i < 3; i++)
