@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Clickideias.TicTacToe
@@ -23,9 +24,7 @@ namespace Clickideias.TicTacToe
         public void HumanPlay()
         {
             _currentSprite = TurnManager.Instance.XSprite;
-            Image spriteImage = GetComponentsInChildren<Image>()[1];
-            spriteImage.color = new Color(spriteImage.color.r, spriteImage.color.g, spriteImage.color.b, 1);
-            spriteImage.sprite = _currentSprite;
+            TurnIntoPlay(true);
             this.GetComponent<Button>().interactable = false;
 
             //Value for "X"
@@ -38,13 +37,27 @@ namespace Clickideias.TicTacToe
         public void ComputerPlay()
         {
             _currentSprite = TurnManager.Instance.OSprite;
-            Image spriteImage = GetComponentsInChildren<Image>()[1];
-            spriteImage.color = new Color(spriteImage.color.r, spriteImage.color.g, spriteImage.color.b, 1);
-            spriteImage.sprite = _currentSprite;
+            TurnIntoPlay(false);
             this.GetComponent<Button>().interactable = false;
 
             //Value for "O"
             MyValue = 2;
+        }
+
+        private void TurnIntoPlay(bool isPlayer)
+        {
+            Image spriteImage = GetComponentsInChildren<Image>()[1];
+            Light2D spriteLight = spriteImage.GetComponent<Light2D>();
+
+            spriteLight.enabled = true;
+
+            spriteImage.color = new Color(spriteImage.color.r, spriteImage.color.g, spriteImage.color.b, 1);
+            spriteImage.sprite = _currentSprite;
+
+            if (!isPlayer) spriteLight.color = new Color(164, 191, 0);
+            else spriteLight.color = new Color(0, 139, 255);
+
+
         }
 
     }

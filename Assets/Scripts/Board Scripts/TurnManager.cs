@@ -83,7 +83,7 @@ namespace Clickideias.TicTacToe
             winnerText.gameObject.SetActive(true);
             if (table.BoardRules() != "DRAW")
             {
-                winnerText.text = $"{table.BoardRules()} wins!";
+                winnerText.text = $"Computer wins!";
             }
             else
             {
