@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +23,9 @@ namespace Clickideias.TicTacToe
         public void HumanPlay()
         {
             _currentSprite = TurnManager.Instance.XSprite;
-            transform.GetChild(0).GetComponent<Image>().sprite = _currentSprite;
+            Image spriteImage = GetComponentsInChildren<Image>()[1];
+            spriteImage.color = new Color(spriteImage.color.r, spriteImage.color.g, spriteImage.color.b, 1);
+            spriteImage.sprite = _currentSprite;
             this.GetComponent<Button>().interactable = false;
 
             //Value for "X"
@@ -34,7 +38,9 @@ namespace Clickideias.TicTacToe
         public void ComputerPlay()
         {
             _currentSprite = TurnManager.Instance.OSprite;
-            transform.GetChild(0).GetComponent<Image>().sprite = _currentSprite;
+            Image spriteImage = GetComponentsInChildren<Image>()[1];
+            spriteImage.color = new Color(spriteImage.color.r, spriteImage.color.g, spriteImage.color.b, 1);
+            spriteImage.sprite = _currentSprite;
             this.GetComponent<Button>().interactable = false;
 
             //Value for "O"
