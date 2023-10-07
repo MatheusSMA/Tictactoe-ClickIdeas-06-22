@@ -54,7 +54,7 @@ namespace Clickideias.TicTacToe
             spriteImage.color = new Color(spriteImage.color.r, spriteImage.color.g, spriteImage.color.b, 1);
             spriteImage.sprite = _currentSprite;
 
-            if (!isPlayer) spriteLight.color = new Color(164, 191, 0);
+            if (!isPlayer) spriteLight.color = new Color(255, 14, 0);
             else spriteLight.color = new Color(0, 139, 255);
 
 
